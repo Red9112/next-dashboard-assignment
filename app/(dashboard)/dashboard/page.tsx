@@ -43,7 +43,7 @@ export default function DashboardPage() {
   ];
 
   // Fake recent contacts
-  const recentContacts = contacts.slice(0, 5);
+  const recentContacts = (contacts as any[]).slice(0, 5);
 
   // --------------------------------------------------
   // 🔥  EXTRACTEUR DE NOM ROBUSTE POUR TOUS LES CSV
@@ -181,7 +181,8 @@ export default function DashboardPage() {
           </div>
           <div className="space-y-1">
             {recentContacts.map((c, i) => {
-              const name = extractName(c);
+              const name = String(extractName(c));
+              const initial = name.charAt(0).toUpperCase();
               return (
                 <div
                   key={i}
@@ -189,13 +190,13 @@ export default function DashboardPage() {
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-semibold text-sm">
-                      {name.charAt(0).toUpperCase()}
+                      {initial}
                     </div>
                     <div>
                       <p className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                         {name}
                       </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">{c.email || "No email"}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">{(c as any).email || "No email"}</p>
                     </div>
                   </div>
                 </div>

@@ -3,7 +3,12 @@
 import { UserButton } from "@clerk/nextjs";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 
-export default function Navbar({ dark, setDark }) {
+type NavbarProps = {
+  dark: boolean;
+  setDark: (dark: boolean) => void;
+};
+
+export default function Navbar({ dark, setDark }: NavbarProps) {
   return (
     <div className="w-full px-6 h-16 border-b flex items-center justify-between bg-white dark:bg-gray-800 dark:border-gray-700 shadow-sm">
       <h1 className="font-bold text-xl dark:text-gray-100">Dashboard</h1>
